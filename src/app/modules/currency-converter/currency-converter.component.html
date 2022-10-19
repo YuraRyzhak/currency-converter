@@ -1,0 +1,29 @@
+<div class="container">
+  <app-header></app-header>
+  <div class="converter">
+    <form [formGroup]="form">
+      <div class="form-block">
+        <p>The current exchange rate of the selected currency is relative UAH {{ selectedOption1 }}</p>
+        <select class="select" formControlName="currencyFrom" [(ngModel)]="selectedOption1" name="first"
+          (input)="convertFrom()">
+          <option *ngFor="let rate of rates$ | async" [value]="rate.rate">
+            {{rate.cc}} {{rate.txt}}
+          </option>
+        </select>
+        <input class="input" min="0" formControlName="valueFrom" [(ngModel)]="valueFrom" type="number"
+          (input)="convertFrom()">
+      </div>
+      <div class="form-block">
+        <p>The current exchange rate of the selected currency is relative UAH {{ selectedOption2 }}</p>
+        <select class="select" formControlName="currencyTo" [(ngModel)]="selectedOption2" name="first"
+          (input)="convertTo()">
+          <option *ngFor="let rate of rates$ | async" [value]="rate.rate">
+            {{rate.cc}} {{rate.txt}}
+          </option>
+        </select>
+        <input class="input" min="0" formControlName="valueTo" [(ngModel)]="valueTo" type="number"
+          (input)="convertTo()">
+      </div>
+    </form>
+  </div>
+</div>
